@@ -1,0 +1,24 @@
+#!/usr/bin/env groovy
+node {
+    stage('Checkout SCM') {
+        checkout scm
+    }
+   
+    catch(Exception e) {
+        error "Failed at reading config file.\n${e}"
+    }
+    
+    try {
+        
+        stage('sample') {
+            
+                sh 'echo Hello World'
+                
+            }
+        }
+
+    }
+    catch (Exception e){    
+        error "Your contionus build failed at ${current}"
+    }
+}
